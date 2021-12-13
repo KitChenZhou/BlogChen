@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Sorting_algorithm | LeiChen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="排序与搜索 1. 冒泡算法(Bulle sort)12345678910111213141516171819202122232425def bubble_sort(alist):    &quot;&quot;&quot;冒泡排序&quot;&quot;&quot;    print(f&quot;preview: &amp;#123;alist&amp;#125;&quot;)    length &#x3D; len(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sorting_algorithm">
+<meta property="og:url" content="http://example.com/2021/12/09/Sorting-algorithm/index.html">
+<meta property="og:site_name" content="LeiChen">
+<meta property="og:description" content="排序与搜索 1. 冒泡算法(Bulle sort)12345678910111213141516171819202122232425def bubble_sort(alist):    &quot;&quot;&quot;冒泡排序&quot;&quot;&quot;    print(f&quot;preview: &amp;#123;alist&amp;#125;&quot;)    length &#x3D; len(">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/12/09/Sorting-algorithm/Sorting_algorithm_efficiency_comparison.png">
+<meta property="og:image" content="http://example.com/2021/12/09/Sorting-algorithm/Quick_sort.png">
+<meta property="og:image" content="http://example.com/2021/12/09/Sorting-algorithm/Merge_sort.png">
+<meta property="article:published_time" content="2021-12-09T14:33:12.000Z">
+<meta property="article:modified_time" content="2021-12-09T14:37:14.093Z">
+<meta property="article:author" content="Lei Chen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/12/09/Sorting-algorithm/Sorting_algorithm_efficiency_comparison.png">
+  
+    <link rel="alternate" href="/atom.xml" title="LeiChen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LeiChen</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Sorting-algorithm" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/12/09/Sorting-algorithm/" class="article-date">
+  <time datetime="2021-12-09T14:33:12.000Z" itemprop="datePublished">2021-12-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Sorting_algorithm
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="排序与搜索"><a href="#排序与搜索" class="headerlink" title="排序与搜索"></a>排序与搜索</h1><p><img src="/2021/12/09/Sorting-algorithm/Sorting_algorithm_efficiency_comparison.png" alt="image-20210306132505221"></p>
+<h3 id="1-冒泡算法-Bulle-sort"><a href="#1-冒泡算法-Bulle-sort" class="headerlink" title="1. 冒泡算法(Bulle sort)"></a>1. 冒泡算法(Bulle sort)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span>(<span class="params">alist</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;冒泡排序&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;preview: <span class="subst">&#123;alist&#125;</span>&quot;</span>)</span><br><span class="line">    length = <span class="built_in">len</span>(alist)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(length - <span class="number">1</span>):</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 每找到一个最大值后，可以减少一个</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(length - j - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 一轮交换流程</span></span><br><span class="line">            <span class="keyword">if</span> alist[i] &gt; alist[i+<span class="number">1</span>]:</span><br><span class="line">                alist[i], alist[i+<span class="number">1</span>] = alist[i+<span class="number">1</span>], alist[i]</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> count == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;needn&#x27;t exchange the value, so finish sort&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;after  : <span class="subst">&#123;alist&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> alist</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;稳定性：指遇见相同的数，排序完后相同的数还是按照先前的排序排列&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">10</span>, <span class="string">&quot;冒泡排序&quot;</span>, <span class="string">&quot;=&quot;</span> * <span class="number">10</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;每两两比较后交换，找到最大值放在最后一位&quot;</span>)</span><br><span class="line">bubble_sort([<span class="number">4</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最优时间复杂度：n， \n最坏时间复杂度：n^2， 稳定性： 稳定&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">稳定性：指遇见相同的数，排序完后相同的数还是按照先前的排序排列</span><br><span class="line">========== 冒泡排序 ==========</span><br><span class="line">每两两比较后交换，找到最大值放在最后一位</span><br><span class="line">preview: [4, 0, 7, 2, 1, 8, 9, 5, 6, 3]</span><br><span class="line">needn&#x27;t exchange the value, so finish sort</span><br><span class="line">after  : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><span class="line">最优时间复杂度：n， </span><br><span class="line">最坏时间复杂度：n^2， 稳定性： 稳定</span><br><span class="line">==============================</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度</p>
+<ul>
+<li>最优时间复杂度O(n) （表示遍历一次发现没有任何可以交换的元素，排序结束）</li>
+<li>最坏时间复杂度O(n^2)</li>
+<li>稳定性：稳定</li>
+</ul>
+<h3 id="2-选择排序"><a href="#2-选择排序" class="headerlink" title="2. 选择排序"></a>2. 选择排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_sort</span>(<span class="params">alist</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;选择排序&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;preview: <span class="subst">&#123;alist&#125;</span>&quot;</span>)</span><br><span class="line">    length = <span class="built_in">len</span>(alist)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(length-<span class="number">1</span>):</span><br><span class="line">        <span class="comment"># 假设第0位是最小值</span></span><br><span class="line">        min_value = j</span><br><span class="line">        <span class="comment"># 从第一位开始选择最小值的下标，找到最小值的下表后再替换</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(j + <span class="number">1</span>, length):</span><br><span class="line">            <span class="keyword">if</span> alist[min_value] &gt; alist[i]:</span><br><span class="line">                min_value = i</span><br><span class="line">        alist[j], alist[min_value] = alist[min_value], alist[j]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;after  : <span class="subst">&#123;alist&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> alist</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">10</span>, <span class="string">&quot;选择排序&quot;</span>, <span class="string">&quot;=&quot;</span> * <span class="number">10</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;首先找到一个最大值，与最后一个值交换&quot;</span>)</span><br><span class="line">select_sort([<span class="number">4</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最优时间复杂度：n^2， \n最坏时间复杂度：n^2， 稳定性： 不稳定&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">========== 选择排序 ==========</span><br><span class="line">首先找到一个最大值，与最后一个值交换</span><br><span class="line">preview: [4, 0, 7, 2, 1, 8, 9, 5, 6, 3]</span><br><span class="line">after  : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><span class="line">最优时间复杂度：n^2， </span><br><span class="line">最坏时间复杂度：n^2， 稳定性： 不稳定</span><br><span class="line">==============================</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-插入排序"><a href="#3-插入排序" class="headerlink" title="3. 插入排序"></a>3. 插入排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span>(<span class="params">alist</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;插入排序&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;preview: <span class="subst">&#123;alist&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(alist)):</span><br><span class="line">        <span class="comment"># i表示内层村换起始值</span></span><br><span class="line">        <span class="comment"># for i in range(i, 0, -1):</span></span><br><span class="line">        <span class="keyword">while</span> i &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># 执行从右边的无序序列中去除第一个元素，即i位置元素，然后将其插入到前面有序序列中</span></span><br><span class="line">            <span class="keyword">if</span> alist[i] &lt; alist[i-<span class="number">1</span>]:</span><br><span class="line">                alist[i], alist[i-<span class="number">1</span>] = alist[i-<span class="number">1</span>], alist[i]</span><br><span class="line">                i -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;after  : <span class="subst">&#123;alist&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> alist</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">10</span>, <span class="string">&quot;插入排序&quot;</span>, <span class="string">&quot;=&quot;</span> * <span class="number">10</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;将后面无序序列插入到前面有序序列中&quot;</span>)</span><br><span class="line">insert_sort([<span class="number">4</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">3</span>])</span><br><span class="line">insert_sort([<span class="number">54</span>, <span class="number">26</span>, <span class="number">93</span>, <span class="number">17</span>, <span class="number">77</span>, <span class="number">31</span>, <span class="number">44</span>, <span class="number">55</span>, <span class="number">20</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最优时间复杂度：n， \n最坏时间复杂度：n^2， 稳定性： 稳定&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">========== 插入排序 ==========</span><br><span class="line">将后面无序序列插入到前面有序序列中</span><br><span class="line">preview: [<span class="number">4</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">3</span>]</span><br><span class="line">after  : [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line">preview: [<span class="number">54</span>, <span class="number">26</span>, <span class="number">93</span>, <span class="number">17</span>, <span class="number">77</span>, <span class="number">31</span>, <span class="number">44</span>, <span class="number">55</span>, <span class="number">20</span>]</span><br><span class="line">after  : [<span class="number">17</span>, <span class="number">20</span>, <span class="number">26</span>, <span class="number">31</span>, <span class="number">44</span>, <span class="number">54</span>, <span class="number">55</span>, <span class="number">77</span>, <span class="number">93</span>]</span><br><span class="line">最优时间复杂度：n， </span><br><span class="line">最坏时间复杂度：n^<span class="number">2</span>， 稳定性： 稳定</span><br><span class="line">==============================</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-希尔排序"><a href="#4-希尔排序" class="headerlink" title="4. 希尔排序"></a>4. 希尔排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_sort</span>(<span class="params">alist</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;希尔排序&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;preview: <span class="subst">&#123;alist&#125;</span>&quot;</span>)</span><br><span class="line">    length = <span class="built_in">len</span>(alist)</span><br><span class="line">    gap = length // <span class="number">2</span></span><br><span class="line">    <span class="comment"># gap变换到0之前，插入算法执行的次数</span></span><br><span class="line">    <span class="keyword">while</span> gap &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># 插入算法，与普通的插入算法的区别就是gap步长</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gap, length):</span><br><span class="line">            <span class="keyword">while</span> i &gt; <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">if</span> alist[i] &lt; alist[i-gap]:</span><br><span class="line">                    alist[i], alist[i-gap] = alist[i-gap], alist[i]</span><br><span class="line">                    i -= gap</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        gap //= <span class="number">2</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;after  : <span class="subst">&#123;alist&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> alist</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">10</span>, <span class="string">&quot;希尔排序&quot;</span>, <span class="string">&quot;=&quot;</span> * <span class="number">10</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;希尔排序是插入排序的一种，是直接插入排序算法的一种更高效的改进版，‘三层for循环+if’&quot;</span>)</span><br><span class="line">shell_sort([<span class="number">4</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">3</span>])</span><br><span class="line">shell_sort([<span class="number">54</span>, <span class="number">26</span>, <span class="number">93</span>, <span class="number">17</span>, <span class="number">77</span>, <span class="number">31</span>, <span class="number">44</span>, <span class="number">55</span>, <span class="number">20</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最优时间复杂度：根据步长序列的不同而不同， \n最坏时间复杂度：n^2， 稳定性： 不稳定&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">========== 希尔排序 ==========</span><br><span class="line">希尔排序是插入排序的一种，是直接插入排序算法的一种更高效的改进版，‘三层for循环+if’</span><br><span class="line">preview: [4, 0, 7, 2, 1, 8, 9, 5, 6, 3]</span><br><span class="line">after  : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><span class="line">preview: [54, 26, 93, 17, 77, 31, 44, 55, 20]</span><br><span class="line">after  : [17, 20, 26, 31, 44, 54, 55, 77, 93]</span><br><span class="line">最优时间复杂度：根据步长序列的不同而不同， </span><br><span class="line">最坏时间复杂度：n^2， 稳定性： 不稳定</span><br><span class="line">==============================</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-快速排序"><a href="#5-快速排序" class="headerlink" title="5. 快速排序"></a>5. 快速排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span>(<span class="params">alist, first, last</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;快速排序&quot;&quot;&quot;</span></span><br><span class="line">    length = <span class="built_in">len</span>(alist)</span><br><span class="line">    <span class="keyword">if</span> first &gt;= last:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    mid_value = alist[first]</span><br><span class="line">    low = first</span><br><span class="line">    high = last</span><br><span class="line">    <span class="comment"># 快排</span></span><br><span class="line">    <span class="keyword">while</span> low &lt; high:</span><br><span class="line">        <span class="keyword">while</span> low &lt; high <span class="keyword">and</span> alist[high] &gt;= mid_value:</span><br><span class="line">            high -= <span class="number">1</span></span><br><span class="line">        alist[low] = alist[high]</span><br><span class="line">        <span class="comment"># low += 1</span></span><br><span class="line">        <span class="keyword">while</span> low &lt; high <span class="keyword">and</span> alist[low] &lt; mid_value:</span><br><span class="line">            low += <span class="number">1</span></span><br><span class="line">        alist[high] = alist[low]</span><br><span class="line">        <span class="comment"># high -= 1</span></span><br><span class="line">    <span class="comment"># 从循环退出时， low==high</span></span><br><span class="line">    alist[low] = mid_value</span><br><span class="line">    <span class="comment"># 对low左边的列表执行快速排序</span></span><br><span class="line">    quick_sort(alist, first, low-<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 对low右边的列表排序</span></span><br><span class="line">    quick_sort(alist, low+<span class="number">1</span>, last)</span><br><span class="line">    <span class="built_in">print</span>(alist)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">10</span>, <span class="string">&quot;快速排序&quot;</span>, <span class="string">&quot;=&quot;</span> * <span class="number">10</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;快速排序：通过高低位值交换找到指定值的位置，  &quot;</span>)</span><br><span class="line">a = [<span class="number">4</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">3</span>]</span><br><span class="line">quick_sort(a, <span class="number">0</span>, <span class="built_in">len</span>(a)-<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">a = [<span class="number">54</span>, <span class="number">26</span>, <span class="number">93</span>, <span class="number">17</span>, <span class="number">77</span>, <span class="number">31</span>, <span class="number">44</span>, <span class="number">55</span>, <span class="number">20</span>]</span><br><span class="line">quick_sort(a, <span class="number">0</span>, <span class="built_in">len</span>(a) - <span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最优时间复杂度: nlogn， \n最坏时间复杂度：n^2， 稳定性： 不稳定&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">========== 快速排序 ==========</span><br><span class="line">快速排序：通过高低位值交换找到指定值的位置，  </span><br><span class="line">[0, 1, 2, 3, 4, 8, 9, 5, 6, 7]</span><br><span class="line">[0, 1, 2, 3, 4, 8, 9, 5, 6, 7]</span><br><span class="line">[0, 1, 2, 3, 4, 8, 9, 5, 6, 7]</span><br><span class="line">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><span class="line">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><span class="line">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><span class="line">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><span class="line">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><span class="line">[17, 20, 26, 31, 44, 54, 77, 55, 93]</span><br><span class="line">[17, 20, 26, 31, 44, 54, 77, 55, 93]</span><br><span class="line">[17, 20, 26, 31, 44, 54, 77, 55, 93]</span><br><span class="line">[17, 20, 26, 31, 44, 54, 55, 77, 93]</span><br><span class="line">[17, 20, 26, 31, 44, 54, 55, 77, 93]</span><br><span class="line">[17, 20, 26, 31, 44, 54, 55, 77, 93]</span><br><span class="line">最优时间复杂度: nlogn， </span><br><span class="line">最坏时间复杂度：n^2， 稳定性： 不稳定</span><br><span class="line">==============================</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/12/09/Sorting-algorithm/Quick_sort.png" alt="image-20210306220515430"></p>
+<h3 id="6-归并排序"><a href="#6-归并排序" class="headerlink" title="6. 归并排序"></a>6. 归并排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span>(<span class="params">alist</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;归并排序&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;preview: <span class="subst">&#123;alist&#125;</span>&quot;</span>)</span><br><span class="line">    n = <span class="built_in">len</span>(alist)</span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> alist</span><br><span class="line">    mid = n // <span class="number">2</span></span><br><span class="line">    <span class="comment"># left 采用归并排序后形成的有序新的列表</span></span><br><span class="line">    left_list = merge_sort(alist[:mid])</span><br><span class="line">    right_list = merge_sort(alist[mid:])</span><br><span class="line">    <span class="string">&quot;&quot;&quot;将两个有序的子序列合并为一个新的整体&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># merge(left, right)</span></span><br><span class="line">    left_point, right_point = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    result = []</span><br><span class="line">    <span class="keyword">while</span> left_point &lt; <span class="built_in">len</span>(left_list) <span class="keyword">and</span> right_point &lt; <span class="built_in">len</span>(right_list):</span><br><span class="line">        <span class="keyword">if</span> left_list[left_point] &lt; right_list[right_point]:</span><br><span class="line">            result.append(left_list[left_point])</span><br><span class="line">            left_point += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            result.append(right_list[right_point])</span><br><span class="line">            right_point += <span class="number">1</span></span><br><span class="line">    result += left_list[left_point:]</span><br><span class="line">    result += right_list[right_point:]</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">10</span>, <span class="string">&quot;归并排序&quot;</span>, <span class="string">&quot;=&quot;</span> * <span class="number">10</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;归并算法&quot;</span>)</span><br><span class="line">merge_list = merge_sort([<span class="number">4</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;after  : <span class="subst">&#123;merge_list&#125;</span>&quot;</span>)</span><br><span class="line">merge_list = merge_sort([<span class="number">54</span>, <span class="number">26</span>, <span class="number">93</span>, <span class="number">17</span>, <span class="number">77</span>, <span class="number">31</span>, <span class="number">44</span>, <span class="number">55</span>, <span class="number">20</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;after  : <span class="subst">&#123;merge_list&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最优时间复杂度：nlogn， \n最坏时间复杂度:nlogn， \n稳定性： 稳定&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">========== 归并排序 ==========</span><br><span class="line">归并算法</span><br><span class="line">preview: [4, 0, 7, 2, 1, 8, 9, 5, 6, 3]</span><br><span class="line">preview: [4, 0, 7, 2, 1]</span><br><span class="line">preview: [4, 0]</span><br><span class="line">preview: [4]</span><br><span class="line">preview: [0]</span><br><span class="line">preview: [7, 2, 1]</span><br><span class="line">preview: [7]</span><br><span class="line">preview: [2, 1]</span><br><span class="line">preview: [2]</span><br><span class="line">preview: [1]</span><br><span class="line">preview: [8, 9, 5, 6, 3]</span><br><span class="line">preview: [8, 9]</span><br><span class="line">preview: [8]</span><br><span class="line">preview: [9]</span><br><span class="line">preview: [5, 6, 3]</span><br><span class="line">preview: [5]</span><br><span class="line">preview: [6, 3]</span><br><span class="line">preview: [6]</span><br><span class="line">preview: [3]</span><br><span class="line">after  : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><span class="line">最优时间复杂度：nlogn， </span><br><span class="line">最坏时间复杂度:nlogn， </span><br><span class="line">稳定性： 稳定</span><br><span class="line">==============================</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2021/12/09/Sorting-algorithm/Merge_sort.png" alt="image-20210306195406907"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/09/Sorting-algorithm/" data-id="ckx4u20x3000144tqdsewb6xx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/12/09/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">排序算法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/12/09/Sorting-algorithm/">Sorting_algorithm</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/09/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">排序算法</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/09/python%E5%9F%BA%E7%A1%80-0/">python基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/09/Hello-hexo/">Hello hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/09/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Lei Chen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>python基础 | LeiChen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="python基础1. 可迭代对象，迭代器， 生成器，装饰器 迭代器，是访问集合元素的一种方式，特点：  每次调用next()方法只访问一个元素，而且不能后退，便于循环比较大的数据集合，节省内存 只能从头到尾访问，不能随机访问某个值 迭代器提供了一个同意的访问集合的接口，只要定义了iter()方法对象，就可以使用迭代器访问   生成器，一个调用返回迭代器的函数，叫生成器，函数中包含yield语法，这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python基础">
+<meta property="og:url" content="http://example.com/2021/12/09/python%E5%9F%BA%E7%A1%80-0/index.html">
+<meta property="og:site_name" content="LeiChen">
+<meta property="og:description" content="python基础1. 可迭代对象，迭代器， 生成器，装饰器 迭代器，是访问集合元素的一种方式，特点：  每次调用next()方法只访问一个元素，而且不能后退，便于循环比较大的数据集合，节省内存 只能从头到尾访问，不能随机访问某个值 迭代器提供了一个同意的访问集合的接口，只要定义了iter()方法对象，就可以使用迭代器访问   生成器，一个调用返回迭代器的函数，叫生成器，函数中包含yield语法，这">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2017/03/1489720931-7116-4AQC6.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2017/03/1489720930-6827-Vtk4m.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2017/03/1489720930-5882-BO4qO.png">
+<meta property="article:published_time" content="2021-12-09T12:44:28.000Z">
+<meta property="article:modified_time" content="2021-12-09T12:51:55.385Z">
+<meta property="article:author" content="Lei Chen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.runoob.com/wp-content/uploads/2017/03/1489720931-7116-4AQC6.png">
+  
+    <link rel="alternate" href="/atom.xml" title="LeiChen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LeiChen</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python基础-0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/12/09/python%E5%9F%BA%E7%A1%80-0/" class="article-date">
+  <time datetime="2021-12-09T12:44:28.000Z" itemprop="datePublished">2021-12-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="python基础"><a href="#python基础" class="headerlink" title="python基础"></a>python基础</h2><h3 id="1-可迭代对象，迭代器，-生成器，装饰器"><a href="#1-可迭代对象，迭代器，-生成器，装饰器" class="headerlink" title="1. 可迭代对象，迭代器， 生成器，装饰器"></a>1. 可迭代对象，迭代器， 生成器，装饰器</h3><ol>
+<li><p>迭代器，是访问集合元素的一种方式，特点：</p>
+<ul>
+<li>每次调用next()方法只访问一个元素，而且不能后退，便于循环比较大的数据集合，节省内存</li>
+<li>只能从头到尾访问，不能随机访问某个值</li>
+<li>迭代器提供了一个同意的访问集合的接口，只要定义了iter()方法对象，就可以使用迭代器访问</li>
+</ul>
+</li>
+<li><p>生成器，一个调用返回迭代器的函数，叫生成器，函数中包含yield语法，这个函数就会变成生成器</p>
+<ul>
+<li><p>生成器表达式：用来生成有规律的生成器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">格式：generator_name=(<span class="string">&#x27;生成规则’ for i range(num) if &#x27;</span>i的条件‘）</span><br></pre></td></tr></table></figure></li>
+<li><p>yield创建生成器</p>
+</li>
+<li><p>生成器实现单线程的异步并发效果</p>
+</li>
+<li><p>生成器中的send()方法使用</p>
+</li>
+</ul>
+</li>
+<li><p>装饰器，对已有函数，在不改变它内在封装上扩展它的功能</p>
+<ul>
+<li><p>使用方式：</p>
+<ul>
+<li>先定义一个装饰器</li>
+<li>在定义你的业务函数或者类</li>
+<li>最后把这装饰器扣在函数上</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这是装饰器函数，参数 func 是被装饰的函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logger</span>(<span class="params">func</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span>(<span class="params">*args, **kw</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;主人，我准备开始执行：&#123;&#125; 函数了:&#x27;</span>.<span class="built_in">format</span>(func.__name__))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 真正执行的是这行。</span></span><br><span class="line">        func(*args, **kw)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;主人，我执行完啦。&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@logger</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;&#123;&#125; + &#123;&#125; = &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(x, y, x+y))</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">主人，我准备开始执行：add 函数了:</span></span><br><span class="line"><span class="string">200 + 50 = 250</span></span><br><span class="line"><span class="string">主人，我执行完啦。</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;带参数&quot;&quot;&quot;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say_hello</span>(<span class="params">contry</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span>(<span class="params">func</span>):</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">deco</span>(<span class="params">*args, **kwargs</span>):</span></span><br><span class="line">            <span class="keyword">if</span> contry == <span class="string">&quot;china&quot;</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;你好!&quot;</span>)</span><br><span class="line">            <span class="keyword">elif</span> contry == <span class="string">&quot;america&quot;</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;hello.&#x27;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 真正执行函数的地方</span></span><br><span class="line">            func(*args, **kwargs)</span><br><span class="line">        <span class="keyword">return</span> deco</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="comment"># 小明，中国人</span></span><br><span class="line"><span class="meta">@say_hello(<span class="params"><span class="string">&quot;china&quot;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xiaoming</span>():</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># jack，美国人</span></span><br><span class="line"><span class="meta">@say_hello(<span class="params"><span class="string">&quot;america&quot;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">jack</span>():</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;带参数的装饰器类&quot;&quot;&quot;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">logger</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, level=<span class="string">&#x27;INFO&#x27;</span></span>):</span></span><br><span class="line">        self.level = level</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">self, func</span>):</span> <span class="comment"># 接受函数</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span>(<span class="params">*args, **kwargs</span>):</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[&#123;level&#125;]: the function &#123;func&#125;() is running...&quot;</span>\</span><br><span class="line">                .<span class="built_in">format</span>(level=self.level, func=func.__name__))</span><br><span class="line">            func(*args, **kwargs)</span><br><span class="line">        <span class="keyword">return</span> wrapper  <span class="comment">#返回函数</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@logger(<span class="params">level=<span class="string">&#x27;WARNING&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span>(<span class="params">something</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;say &#123;&#125;!&quot;</span>.<span class="built_in">format</span>(something))</span><br><span class="line"></span><br><span class="line">say(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">[WARNING]: the function say() is running...</span></span><br><span class="line"><span class="string">say hello!</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li></li>
+</ul>
+</li>
+</ol>
+<h3 id="2-python2和python3的区别，如何实现python2代码迁移到python3环境，编码方式有什么差别"><a href="#2-python2和python3的区别，如何实现python2代码迁移到python3环境，编码方式有什么差别" class="headerlink" title="2. python2和python3的区别，如何实现python2代码迁移到python3环境，编码方式有什么差别"></a>2. python2和python3的区别，如何实现python2代码迁移到python3环境，编码方式有什么差别</h3><h3 id="3-浅拷贝和深拷贝"><a href="#3-浅拷贝和深拷贝" class="headerlink" title="3. 浅拷贝和深拷贝"></a>3. 浅拷贝和深拷贝</h3><ol>
+<li><p>浅拷贝：只复制了最外层的容器，副本中的元素是原容器中元素的引用，如果所有的元素都是不可变的， 那么没什么问题，但是如果有可变的元素，可能就会导致意想不到的问题。比如a中列表，b浅拷贝a，然后修改列表中的数会导致a中列表也会发生变化</p>
+<p>1、<strong>b = a:</strong> 赋值引用，a 和 b 都指向同一个对象。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2017/03/1489720931-7116-4AQC6.png" alt="img"></p>
+<p><strong>2、b = a.copy():</strong> 浅拷贝, a 和 b 是一个独立的对象，但他们的子对象还是指向统一对象（是引用）。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2017/03/1489720930-6827-Vtk4m.png" alt="img"></p>
+<p><strong>b = copy.deepcopy(a):</strong> 深度拷贝, a 和 b 完全拷贝了父对象及其子对象，两者是完全独立的。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2017/03/1489720930-5882-BO4qO.png" alt="img"></p>
+</li>
+<li><p>深拷贝：即副本不共享内部对象的引用</p>
+</li>
+</ol>
+<h3 id="数据库-Mysql-、缓存-Redis-、消息队列-Kafka"><a href="#数据库-Mysql-、缓存-Redis-、消息队列-Kafka" class="headerlink" title="数据库(Mysql)、缓存(Redis)、消息队列(Kafka)"></a>数据库(Mysql)、缓存(Redis)、消息队列(Kafka)</h3><h3 id="4-classmethod-和-staticmethod的作用和区别"><a href="#4-classmethod-和-staticmethod的作用和区别" class="headerlink" title="4. @classmethod 和 @staticmethod的作用和区别"></a>4. @classmethod 和 @staticmethod的作用和区别</h3><ol>
+<li>@classmethod: 当我们需要和类直接进行交互，而不需要和实例进行交互时，类方法是最好的选择，类方法和实例方法类似，但是传递的不是类的实例，而是类本身，第一个参数是cls。我们可以<strong>用类的实例调用类方法，也可以直接用类名来调用</strong></li>
+<li>@staticmethod: 静态方法类似普通方法，参数里面不用self，这些<strong>方法和类相关，但是又不需要类和实例中的任何消息、属性等</strong>，如果把这些方法写到外面，这样就把和类相关的代码分散到类外，使得之后对代码的理解和维护都是巨大的障碍，而静态方法就是用来解决这一类问题的</li>
+</ol>
+<h3 id="3-常用的库"><a href="#3-常用的库" class="headerlink" title="3. 常用的库"></a>3. 常用的库</h3><ol>
+<li>tkinter</li>
+<li>flask</li>
+<li>paramiko: ssh连接和sftp协议进行sftp<strong>文件传输</strong></li>
+<li>opencv</li>
+<li>queue</li>
+<li>multiprocessing</li>
+</ol>
+<h3 id="4-文件查找"><a href="#4-文件查找" class="headerlink" title="4. 文件查找"></a>4. 文件查找</h3><h3 id="5-进程和线程"><a href="#5-进程和线程" class="headerlink" title="5. 进程和线程"></a>5. 进程和线程</h3><ol>
+<li>进程和线程的区别</li>
+<li>python中使用线程的缺点<ul>
+<li>GIL导致python无法使用到计算机的多核，仅能使用单核</li>
+<li>python想要提高效率，可以使用多进程</li>
+</ul>
+</li>
+<li>GIL锁什么时候会释放<ul>
+<li>当线程等待结果的时候会释放GIL</li>
+<li>在IO操作等可能会引起阻塞的system call之前，会暂时释放GIL</li>
+<li>里哟个多解释器pypy，jpython来释放GIL锁</li>
+</ul>
+</li>
+</ol>
+<h3 id="6-python-垃圾回收机制"><a href="#6-python-垃圾回收机制" class="headerlink" title="6. python 垃圾回收机制"></a>6. python 垃圾回收机制</h3><p><strong>Python的存储机制</strong></p>
+<ol>
+<li>python是面向对象原因，python的存储问题就是对象的存储问题，对于每个对象，python会分配一块内存空间去存储</li>
+<li>对于整数和短小的字符串，python会执行缓存机制，赋值给其他对象，只是新增该对象的引用</li>
+<li>容器对象，比如列表元组字典类型，仅仅是其他对象的地址引用    </li>
+</ol>
+<p>​    python采用引用计数机制为主，标记-清楚和分代收集两种机制为辅的策略</p>
+<ol>
+<li>引用计数</li>
+</ol>
+<h3 id="7-列表和生成器的优劣"><a href="#7-列表和生成器的优劣" class="headerlink" title="7. 列表和生成器的优劣"></a>7. 列表和生成器的优劣</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列表: 所有的值一次性加载到内存中</span></span><br><span class="line">a = [x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>)]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成器: 不会一次都加载到内存中，一次返回一次结果</span></span><br><span class="line">b = (x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>))</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>列表, <strong>非常占内存</strong>， 可以任意次遍历</li>
+<li>生成器， <strong>不占内存</strong>， 只能遍历一次</li>
+</ol>
+<h3 id="8-如何理解python的一切皆对象"><a href="#8-如何理解python的一切皆对象" class="headerlink" title="8. 如何理解python的一切皆对象"></a>8. 如何理解python的一切皆对象</h3><p>一切都可以赋值给变量，(内置类型int str, 类，函数)</p>
+<h3 id="9-python高并发解决方案"><a href="#9-python高并发解决方案" class="headerlink" title="9. python高并发解决方案"></a>9. python高并发解决方案</h3><ul>
+<li><p>gevent</p>
+<p>python的并发框架</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">代码看起来好看一些，但是维护比较差，patch没有规律，而且里面封装了c，对python3支持最差</span><br></pre></td></tr></table></figure></li>
+<li><p>twisted<br>python的事件驱动，异步执行任务的网络框架</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">稳定性最好，但是需要较长时间学习，对python3的支持较差</span><br></pre></td></tr></table></figure></li>
+<li><p>tornado<br>python的web开发框架</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">兼容性最好，但是过于简单功能不强，另外没有数据库适配器能和tornado无缝对接，因此调用数据库很麻烦，而且只支持web</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="10-python迭代器，生成器，-装饰器，yield"><a href="#10-python迭代器，生成器，-装饰器，yield" class="headerlink" title="10. python迭代器，生成器， 装饰器，yield"></a>10. python迭代器，生成器， 装饰器，yield</h3><ul>
+<li><p>迭代器<br>迭代器是访问集合元素的一种方式</p>
+<ul>
+<li>每次调用__next__()方法只访问一个元素，而且不能后退，便于循环比较大的数据集合，节省内存；</li>
+<li>只能从头到尾访问，不能随机访问某个值</li>
+<li>迭代器提供了一个统一的访问集合的接口，只要定义了iter()方法对象，都可以使用迭代器访问</li>
+</ul>
+</li>
+<li><p>生成器</p>
+<p>一个调用返回迭代器的函数，就叫做生成器。<strong>函数中包含yield语法，这个函数就会变成生成器</strong>。</p>
+<p>生成器在某种概念下可以看做是特殊的迭代器，它比迭代实现上更加简洁，</p>
+<ul>
+<li><p>1)生成器表达式:  generator_name=(‘生成规则’ for i range(num) if ‘i的条件‘）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=(<span class="string">&#x27;a&#x27;</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>) <span class="keyword">if</span> i%<span class="number">2</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>2）yield创建生成器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_ex</span>(<span class="params">a</span>):</span></span><br><span class="line">    <span class="keyword">while</span> a&gt;<span class="number">0</span>:</span><br><span class="line">        a-=<span class="number">1</span></span><br><span class="line">        <span class="keyword">yield</span> <span class="number">1</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">re=gen_ex(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(re.__next__())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;中断打印&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(re.__next__())</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行结果</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">中断打印</span><br><span class="line">hello</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure></li>
+<li><p>3）生成器中的send()方法使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_ex</span>(<span class="params">a</span>):</span></span><br><span class="line">    <span class="keyword">while</span> a&gt;<span class="number">0</span>:</span><br><span class="line">        a-=<span class="number">1</span></span><br><span class="line">        b=<span class="keyword">yield</span></span><br><span class="line">        <span class="built_in">print</span>(b)</span><br><span class="line">re=gen_ex(<span class="number">5</span>)</span><br><span class="line">re.__next__()</span><br><span class="line">re.send(<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;中断打印&#x27;</span>)</span><br><span class="line">re.send(<span class="number">6</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行结果</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line">中断打印</span><br><span class="line"><span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<p>send()可以给yield传参数，yield作为接收，</p>
+</li>
+</ul>
+</li>
+<li><p>装饰器<br>装饰器的作用在于对已有函数，在不改变ta内在封装上扩展ta的功能</p>
+</li>
+</ul>
+<h3 id="11-标准库线程安全的队列是安全的吗，logging是线程安全的吗"><a href="#11-标准库线程安全的队列是安全的吗，logging是线程安全的吗" class="headerlink" title="11. 标准库线程安全的队列是安全的吗，logging是线程安全的吗"></a>11. 标准库线程安全的队列是安全的吗，logging是线程安全的吗</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/09/python%E5%9F%BA%E7%A1%80-0/" data-id="ckx4u20x7000344tq73323dyu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/12/09/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          排序算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/12/09/Hello-hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello hexo</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/12/09/Sorting-algorithm/">Sorting_algorithm</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/09/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">排序算法</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/09/python%E5%9F%BA%E7%A1%80-0/">python基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/09/Hello-hexo/">Hello hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/09/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Lei Chen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
